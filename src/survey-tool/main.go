@@ -41,6 +41,10 @@ func main() {
 			break
 		}
 
+		if line[0] == "theme" {
+			continue
+		}
+
 		q := question{
 			theme:        line[0],
 			questionType: line[1],
@@ -78,8 +82,31 @@ func main() {
 		responses = append(responses, r)
 	}
 
-	fmt.Println(questions)
-	fmt.Println(responses)
+	// Loop through the questions
+	for qIndex, q := range questions {
+		fmt.Println("Theme: ", q.theme)
+		fmt.Println("Type: ", q.questionType)
+		fmt.Println("Question: ", q.text)
+		fmt.Println("-----------------------")
+
+		var totalResponses int64 = 0
+		var totalRating int64 = 0
+		for _, r := range responses {
+			if r.submittedAt == "" {
+				continue
+			}
+
+			totalResponses += 1
+
+			curResponse := r.answers[qIndex]
+			totalRating += curResponse
+		}
+
+		fmt.Println("Total Responses: ", totalResponses)
+		fmt.Println("Total Rating: ", totalRating)
+		fmt.Println("Average: ", totalRating/totalResponses)
+		fmt.Println("")
+	}
 }
 
 func print_help() {
