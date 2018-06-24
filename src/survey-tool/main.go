@@ -60,11 +60,19 @@ func main() {
 		}
 
 		employeeId, _ := strconv.ParseInt(line[1], 10, 0)
+		var answers []int64
+
+		// Get the answers
+		for i := 3; i < len(line); i++ {
+			a, _ := strconv.ParseInt(line[i], 10, 0)
+			answers = append(answers, a)
+		}
 
 		r := response{
 			email:       line[0],
 			employeeId:  employeeId,
 			submittedAt: line[2],
+			answers:     answers,
 		}
 
 		responses = append(responses, r)
