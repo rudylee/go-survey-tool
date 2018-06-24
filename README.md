@@ -19,6 +19,6 @@ go build src/survey-tool/*.go
 
 ## Todo
 
-- [] Use `goroutine` to do the CSV parsing
-- [] Add tests
-- [] Setup travis
+- [ ] Use `goroutine` to do the CSV parsing
+- [ ] Add tests
+- [ ] Setup travis
